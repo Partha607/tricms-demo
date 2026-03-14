@@ -73,6 +73,7 @@
         .gradient-text {
             background: linear-gradient(135deg, #2dd4bf, #3b82f6);
             -webkit-background-clip: text;
+            background-clip: text;
             -webkit-text-fill-color: transparent;
         }
     </style>
@@ -84,14 +85,11 @@
     <nav class="fixed w-full z-50 transition-all duration-300 glass-panel bg-white/80" id="navbar">
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
             <div class="flex items-center justify-between h-20">
-                <div class="flex items-center gap-2">
-                    <div
-                        class="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-500 to-blue-600 flex items-center justify-center text-white font-bold text-xl shadow-lg">
-                        <i class="fa-solid fa-notes-medical"></i>
-                    </div>
+                <a href="#" class="flex items-center gap-2">
+                    <img src="tricms-logo.png" alt="TriCMS Logo" class="h-10 w-auto">
                     <span class="font-heading font-bold text-2xl tracking-tight text-slate-900">Tri<span
                             class="text-brand-600">CMS</span></span>
-                </div>
+                </a>
                 <div class="hidden md:block">
                     <div class="ml-10 flex items-baseline space-x-8">
                         <a href="#advantage"
@@ -694,10 +692,10 @@
     <footer class="bg-slate-950 py-8 border-t border-slate-900">
         <div class="max-w-7xl mx-auto px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4">
             <div class="flex items-center gap-2 text-white opacity-80">
-                <i class="fa-solid fa-notes-medical text-brand-500"></i>
+                <img src="tricms-logo.png" alt="TriCMS Logo" class="h-8 w-auto">
                 <span class="font-heading font-bold text-lg">Tri<span class="text-brand-500">CMS</span></span>
             </div>
-            <p class="text-slate-500 text-sm">© 2026, TriCMS</p>
+            <p class="text-slate-500 text-sm">© 2026 TriCMS. Enterprise Clinic OS.</p>
         </div>
     </footer>
 
@@ -705,6 +703,12 @@
     <a href="https://tricms.in" target="_blank"
         class="fixed bottom-6 right-6 bg-brand-600 text-white w-14 h-14 rounded-full flex items-center justify-center shadow-2xl shadow-brand-600/50 hover:scale-110 transition-transform z-50 animate-pulse">
         <i class="fa-solid fa-play text-xl"></i>
+    </a>
+
+    <!-- Scroll to Top Button -->
+    <a href="#" id="scrollTopBtn"
+        class="fixed bottom-24 right-6 bg-slate-800 text-white w-12 h-12 rounded-full flex items-center justify-center shadow-xl hover:bg-brand-600 hover:-translate-y-1 transition-all duration-300 z-50 opacity-0 pointer-events-none">
+        <i class="fa-solid fa-arrow-up"></i>
     </a>
 
     <!-- Initialize AOS Animation -->
@@ -718,12 +722,22 @@
         // Simple navbar background change on scroll
         window.addEventListener('scroll', () => {
             const nav = document.getElementById('navbar');
+            const scrollTopBtn = document.getElementById('scrollTopBtn');
+
             if (window.scrollY > 20) {
                 nav.classList.add('shadow-md');
                 nav.classList.replace('bg-white/80', 'bg-white/95');
             } else {
                 nav.classList.remove('shadow-md');
                 nav.classList.replace('bg-white/95', 'bg-white/80');
+            }
+
+            if (window.scrollY > 300) {
+                scrollTopBtn.classList.remove('opacity-0', 'pointer-events-none');
+                scrollTopBtn.classList.add('opacity-100', 'pointer-events-auto');
+            } else {
+                scrollTopBtn.classList.remove('opacity-100', 'pointer-events-auto');
+                scrollTopBtn.classList.add('opacity-0', 'pointer-events-none');
             }
         });
     </script>
