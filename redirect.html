@@ -50,15 +50,20 @@
         }
 
         @keyframes morph {
-            0% { border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; }
-            100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+            0% {
+                border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+            }
+
+            100% {
+                border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+            }
         }
 
         /* Dramatic styling for redirect animation */
         body {
             transition: background-color 0.8s ease;
         }
-        
+
         .clinic-card {
             transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1);
             transform-origin: center center;
@@ -122,8 +127,13 @@
         }
 
         @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
         }
 
         /* Override text colors on transform */
@@ -131,18 +141,18 @@
             color: white !important;
             font-size: 3rem !important;
             transition: all 0.5s ease;
-            text-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            text-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
             text-align: center;
         }
-        
+
         body.redirecting .selected-clinic p {
-            color: rgba(255,255,255,0.9) !important;
+            color: rgba(255, 255, 255, 0.9) !important;
             font-size: 1.25rem !important;
             transition: all 0.5s ease;
             max-width: 600px;
             text-align: center;
         }
-        
+
         body.redirecting .selected-clinic .icon-box {
             background-color: transparent !important;
             color: white !important;
@@ -150,15 +160,16 @@
             margin-bottom: 2rem;
             box-shadow: none !important;
         }
-        
+
         body.redirecting .selected-clinic .action-text {
             display: none !important;
         }
-        
-        body.redirecting .selected-clinic > div.absolute {
-            display: none; /* remove background corner flourish */
+
+        body.redirecting .selected-clinic>div.absolute {
+            display: none;
+            /* remove background corner flourish */
         }
-        
+
         /* Elements to hide completely */
         body.redirecting .fade-out-element {
             opacity: 0;
@@ -168,73 +179,98 @@
     </style>
 </head>
 
-<body class="font-sans text-slate-800 bg-slate-900 min-h-screen flex flex-col items-center justify-center relative overflow-hidden">
+<body
+    class="font-sans text-slate-800 bg-slate-900 min-h-screen flex flex-col items-center justify-center relative overflow-hidden">
 
     <!-- Abstract Background -->
     <div class="fade-out-element absolute inset-0 overflow-hidden pointer-events-none">
         <div class="absolute top-[5%] left-[5%] w-[60%] h-[60%] bg-brand-600/30 blur-[120px] rounded-full blob"></div>
-        <div class="absolute bottom-[0%] right-[5%] w-[50%] h-[50%] bg-blue-600/20 blur-[100px] rounded-full blob" style="animation-delay: 2s;"></div>
+        <div class="absolute bottom-[0%] right-[5%] w-[50%] h-[50%] bg-blue-600/20 blur-[100px] rounded-full blob"
+            style="animation-delay: 2s;"></div>
     </div>
 
     <!-- The overlay for the dramatic transition -->
     <div class="overlay" id="overlay"></div>
 
     <div class="fade-out-element relative z-10 text-center mb-16 px-6 pt-12 mt-auto">
-        <img src="tricms-logo.png" alt="TriCMS Logo" class="h-20 w-auto mx-auto mb-8 drop-shadow-[0_0_20px_rgba(255,255,255,0.4)]">
-        <h1 class="text-4xl md:text-5xl font-extrabold font-heading text-white mb-4 tracking-tight">Select Deployment Instance</h1>
-        <p class="text-slate-400 text-lg max-w-xl mx-auto">Choose a clinic environment below to launch your dedicated full-access portal experience.</p>
+        <div class="inline-block bg-white/10 backdrop-blur-md p-4 rounded-3xl mb-8 border border-white/20 shadow-[0_0_30px_rgba(255,255,255,0.15)]">
+            <img src="tricms-logo.png" alt="TriCMS Logo"
+                class="h-20 w-auto mx-auto drop-shadow-[0_0_20px_rgba(255,255,255,0.6)]">
+        </div>
+        <h1 class="text-4xl md:text-5xl font-extrabold font-heading text-white mb-4 tracking-tight">Select Deployment
+            Instance</h1>
+        <p class="text-slate-400 text-lg max-w-xl mx-auto">Choose a clinic environment below to launch your dedicated
+            full-access portal experience.</p>
     </div>
 
     <div class="relative z-10 w-full max-w-5xl px-6 grid md:grid-cols-2 gap-8 mb-auto" id="cardContainer">
-        
+
         <!-- Monish's Clinic -->
-        <button onclick="triggerRedirect(this, 'https://monish-clinic.tricms.in', 'linear-gradient(135deg, #0f766e, #064e3b)')" class="clinic-card group bg-white p-10 rounded-3xl shadow-xl hover:shadow-[0_0_40px_rgba(20,184,166,0.3)] border border-slate-100 flex flex-col items-center text-center cursor-pointer transform hover:-translate-y-2 focus:outline-none focus:ring-4 focus:ring-brand-500 overflow-hidden relative">
-            <div class="absolute top-0 right-0 w-32 h-32 bg-brand-50 rounded-bl-[100px] -z-10 transition-all group-hover:scale-125 duration-500 delay-75"></div>
-            
-            <div class="icon-box w-20 h-20 rounded-2xl bg-brand-100 text-brand-600 flex items-center justify-center text-4xl mb-6 shadow-inner group-hover:bg-brand-600 group-hover:text-white transition-all duration-300">
+        <button
+            onclick="triggerRedirect(this, 'https://monish-clinic.tricms.in', 'linear-gradient(135deg, #0f766e, #064e3b)')"
+            class="clinic-card group bg-white p-10 rounded-3xl shadow-xl hover:shadow-[0_0_40px_rgba(20,184,166,0.3)] border border-slate-100 flex flex-col items-center text-center cursor-pointer transform hover:-translate-y-2 focus:outline-none focus:ring-4 focus:ring-brand-500 overflow-hidden relative">
+            <div
+                class="absolute top-0 right-0 w-32 h-32 bg-brand-50 rounded-bl-[100px] -z-10 transition-all group-hover:scale-125 duration-500 delay-75">
+            </div>
+
+            <div
+                class="icon-box w-20 h-20 rounded-2xl bg-brand-100 text-brand-600 flex items-center justify-center text-4xl mb-6 shadow-inner group-hover:bg-brand-600 group-hover:text-white transition-all duration-300">
                 <i class="fa-solid fa-hospital-user drop-shadow-sm"></i>
             </div>
-            
-            <h2 class="text-3xl font-bold font-heading text-slate-900 mb-3 group-hover:text-brand-700 transition-colors">Monish's Clinic</h2>
-            <p class="text-slate-500 mb-8 leading-relaxed">Explore the full suite of TriCMS features tailored for an advanced multi-specialty environment.</p>
-            
-            <div class="action-text mt-auto inline-flex items-center justify-center gap-2 text-brand-600 font-bold bg-brand-50 px-6 py-2 rounded-full opacity-0 group-hover:opacity-100 transition-all transform translate-y-4 group-hover:translate-y-0">
+
+            <h2
+                class="text-3xl font-bold font-heading text-slate-900 mb-3 group-hover:text-brand-700 transition-colors">
+                Monish's Clinic</h2>
+            <p class="text-slate-500 mb-8 leading-relaxed">Explore the full suite of TriCMS features tailored for an
+                advanced multi-specialty environment.</p>
+
+            <div
+                class="action-text mt-auto inline-flex items-center justify-center gap-2 text-brand-600 font-bold bg-brand-50 px-6 py-2 rounded-full opacity-0 group-hover:opacity-100 transition-all transform translate-y-4 group-hover:translate-y-0">
                 Launch Portal <i class="fa-solid fa-arrow-right"></i>
             </div>
-            
+
             <div class="spinner"></div>
         </button>
 
         <!-- Sylvia's Clinic -->
-        <button onclick="triggerRedirect(this, 'https://sylvia-clinic.tricms.in', 'linear-gradient(135deg, #1e40af, #312e81)')" class="clinic-card group bg-white p-10 rounded-3xl shadow-xl hover:shadow-[0_0_40px_rgba(59,130,246,0.3)] border border-slate-100 flex flex-col items-center text-center cursor-pointer transform hover:-translate-y-2 focus:outline-none focus:ring-4 focus:ring-blue-500 overflow-hidden relative">
-            <div class="absolute top-0 right-0 w-32 h-32 bg-blue-50 rounded-bl-[100px] -z-10 transition-all group-hover:scale-125 duration-500 delay-75"></div>
-            
-            <div class="icon-box w-20 h-20 rounded-2xl bg-blue-100 text-blue-600 flex items-center justify-center text-4xl mb-6 shadow-inner group-hover:bg-blue-600 group-hover:text-white transition-all duration-300">
+        <button
+            onclick="triggerRedirect(this, 'https://sylvia-clinic.tricms.in', 'linear-gradient(135deg, #1e40af, #312e81)')"
+            class="clinic-card group bg-white p-10 rounded-3xl shadow-xl hover:shadow-[0_0_40px_rgba(59,130,246,0.3)] border border-slate-100 flex flex-col items-center text-center cursor-pointer transform hover:-translate-y-2 focus:outline-none focus:ring-4 focus:ring-blue-500 overflow-hidden relative">
+            <div
+                class="absolute top-0 right-0 w-32 h-32 bg-blue-50 rounded-bl-[100px] -z-10 transition-all group-hover:scale-125 duration-500 delay-75">
+            </div>
+
+            <div
+                class="icon-box w-20 h-20 rounded-2xl bg-blue-100 text-blue-600 flex items-center justify-center text-4xl mb-6 shadow-inner group-hover:bg-blue-600 group-hover:text-white transition-all duration-300">
                 <i class="fa-solid fa-stethoscope drop-shadow-sm"></i>
             </div>
-            
-            <h2 class="text-3xl font-bold font-heading text-slate-900 mb-3 group-hover:text-blue-700 transition-colors">Sylvia's Clinic</h2>
-            <p class="text-slate-500 mb-8 leading-relaxed">Experience a streamlined interface specifically designed for efficient solo practitioner workflows.</p>
-            
-            <div class="action-text mt-auto inline-flex items-center justify-center gap-2 text-blue-600 font-bold bg-blue-50 px-6 py-2 rounded-full opacity-0 group-hover:opacity-100 transition-all transform translate-y-4 group-hover:translate-y-0">
+
+            <h2 class="text-3xl font-bold font-heading text-slate-900 mb-3 group-hover:text-blue-700 transition-colors">
+                Sylvia's Clinic</h2>
+            <p class="text-slate-500 mb-8 leading-relaxed">Experience a streamlined interface specifically designed for
+                efficient solo practitioner workflows.</p>
+
+            <div
+                class="action-text mt-auto inline-flex items-center justify-center gap-2 text-blue-600 font-bold bg-blue-50 px-6 py-2 rounded-full opacity-0 group-hover:opacity-100 transition-all transform translate-y-4 group-hover:translate-y-0">
                 Launch Portal <i class="fa-solid fa-arrow-right"></i>
             </div>
-            
+
             <div class="spinner"></div>
         </button>
 
     </div>
 
     <!-- Back to presentation link -->
-    <a href="index.html" class="fade-out-element mt-12 mb-8 relative z-10 text-slate-400 hover:text-white transition-colors flex items-center gap-2 text-sm font-semibold">
-        <i class="fa-solid fa-arrow-left"></i> Return to Presentation
+    <a href="index.html"
+        class="fade-out-element mt-12 mb-8 relative z-10 text-slate-400 hover:text-white transition-colors flex items-center gap-2 text-sm font-semibold">
+        <i class="fa-solid fa-arrow-left"></i> Return to TriCMS Homepage
     </a>
 
     <script>
         function triggerRedirect(element, url, gradientColor) {
             // Prevent double-clicks
             if (document.body.classList.contains('redirecting')) return;
-            
+
             // Set overlay color dynamically based on selection
             const overlay = document.getElementById('overlay');
             overlay.style.background = gradientColor;
@@ -247,12 +283,12 @@
             const heading = element.querySelector('h2');
             const desc = element.querySelector('p');
             const spinner = element.querySelector('.spinner');
-            
+
             // Animate text transition
             setTimeout(() => {
                 heading.style.opacity = '0';
                 desc.style.opacity = '0';
-                
+
                 setTimeout(() => {
                     heading.innerText = 'Initializing System';
                     desc.innerText = 'Establishing secure connection to the live clinic portal...';
@@ -269,4 +305,5 @@
         }
     </script>
 </body>
+
 </html>
